@@ -26,6 +26,7 @@ class PairCreator
 
   def call
     save_to_file(generate_new_pairs)
+    self
   end
 
   def generate_new_pairs
