@@ -11,6 +11,11 @@ class PairCreator
     @historic_pairs = Dir["./pairs/#{cohort}-*.yml"].map {|file| YAML.load_file(file) }.inject([]){|m,a| m + a} rescue []
   end
 
+  def self.call cohort
+    raise "You need to supply a cohort" unless VALID_COHORTS.include?(cohort)
+    new(cohort).call
+  end
+
   def all_pairs
     all_students.combination(2).map{|pair|pair.sort}.to_a
   end
@@ -30,9 +35,5 @@ class PairCreator
     end
   end
 
-  def self.call cohort
-    raise "You need to supply a cohort" unless VALID_COHORTS.include?(cohort)
-    new(cohort).call
-  end
 end
 
