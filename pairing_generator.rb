@@ -36,4 +36,3 @@ class PairCreator
   end
 end
 
-PairCreator.call('july')
