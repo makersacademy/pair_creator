@@ -7,8 +7,8 @@ class PairCreator
 
   def initialize cohort
     @cohort = cohort
-    @all_students = YAML.load_file("./cohorts/#{@cohort}.yml")
-    @historic_pairs = Dir["./pairs/#{cohort}-*.yml"].map {|file| YAML.load_file(file) }.inject([]){|m,a| m + a} rescue []
+    @all_students = YAML.load_file(File.dirname(__FILE__) + "/../data/cohorts/#{@cohort}.yml")
+    @historic_pairs = Dir[File.dirname(__FILE__) + "/../data/pairs/#{cohort}-*.yml"].map {|file| YAML.load_file(file) }.inject([]){|m,a| m + a} rescue []
   end
 
   def self.call cohort
@@ -21,7 +21,7 @@ class PairCreator
   end
 
   def save_to_file(day_pairs)
-    File.write("./pairs/#{cohort}-#{Time.now.strftime("%Y-%d-%m")}-#{rand(10 * 10 * 10)}.yml", day_pairs.to_yaml)
+    File.write(File.dirname(__FILE__) + "/../data/pairs/#{cohort}-#{Time.now.strftime("%Y-%d-%m")}-#{rand(10 * 10 * 10)}.yml", day_pairs.to_yaml)
   end
 
   def call
