@@ -10,5 +10,5 @@ You will need a 'july.yaml' file with a list of all students in to be able to ru
 
 
 todo:
- add absent students
- list out who the missing pair is
+ - add absent students
+ - list out who the missing pair is
